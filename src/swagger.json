@@ -1,0 +1,546 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "EZ-Manage",
+    "description": "The api detail for EZ-Manage",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3100",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Login user",
+        "tags": ["Users"],
+        "description": "Login user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Login user",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Login Success",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Logout user",
+        "tags": ["Users"],
+        "description": "Logout user from system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Logout user",
+            "schema": {
+              "$ref": "#/definitions/Logout"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Logout Successful"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Register user",
+        "tags": ["Users"],
+        "description": "Register user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Register user",
+            "schema": {
+              "$ref": "#/definitions/Register"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Register Success",
+            "schema": {
+              "$ref": "#/definitions/Register"
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-email?token={token}": {
+      "post": {
+        "summary": "Verify user",
+        "tags": ["Users"],
+        "description": "Verify user in system",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Verify user",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "set password",
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Verify Success"
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "summary": "Forgot Password of User",
+        "tags": ["Users"],
+        "description": "Forgot Password of user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Email of user",
+            "schema": {
+              "$ref": "#/definitions/ForgotPassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Reset email send successfully in mail"
+          }
+        }
+      }
+    },
+    "/auth/reset-password?token={token}": {
+      "post": {
+        "summary": "Reset password of user",
+        "tags": ["Users"],
+        "description": "Reset password of user",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "Reset password",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "set new password",
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Password reset succesfully"
+          }
+        }
+      }
+    },
+    "/auth/change-password": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Change password users",
+        "tags": ["Users"],
+        "description": "Change password of user of system",
+        "parameters": [
+          {
+            "name": "password",
+            "in": "body",
+            "description": "Change Password",
+            "schema": {
+              "$ref": "#/definitions/ChangePassword"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Password changed successfully"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Get all users",
+        "tags": ["Users"],
+        "description": "Get all users of system",
+        "parameters": [
+          {
+            "name": "fullName",
+            "in": "query",
+            "required":false,
+            "description": "Search Full Name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "required":false,
+            "description": "Search role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required":false,
+            "description": "Search email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "required":false,
+            "description": "Search address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "required":false,
+            "description": "Search gender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contact",
+            "in": "query",
+            "required":false,
+            "description": "Search contact",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required":false,
+            "description": "Set sortBy with its option. Eg: role:asc or role:desc",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required":false,
+            "description": "Set limit. Eg: 30",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Get all user",
+            "schema": {
+              "$ref": "#/definitions/Register"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Get user by userId",
+        "tags": ["Users"],
+        "description": "Get user by userId of system",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Get user by userId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Get user",
+            "schema": {
+              "$ref": "#/definitions/Register"
+            }
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Update user by userId",
+        "tags": ["Users"],
+        "description": "Update user by userId of system",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Update user by userId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updateUser",
+            "in": "body",
+            "description": "Update User",
+            "schema": {
+              "$ref": "#/definitions/UpdateUser"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User Updated Successfully"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Delete user by userId",
+        "tags": ["Users"],
+        "description": "Delete user by userId of system",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Delete user by userId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User Deleted Successfully"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Login": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Logout": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "Register": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "profileImagePath": {
+          "type": "object",
+          "properties": {
+            "imageUrl": {
+              "type": "string"
+            },
+            "publicKey": {
+              "type": "string"
+            }
+          }
+        },
+        "contact": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other"]
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "admin", "superadmin"]
+        }
+      }
+    },
+    "UpdateUser": {
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "profileImagePath": {
+          "type": "object",
+          "properties": {
+            "imageUrl": {
+              "type": "string"
+            },
+            "publicKey": {
+              "type": "string"
+            }
+          }
+        },
+        "contact": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other"]
+        },
+        "role": {
+          "type": "string",
+          "enum": ["user", "admin", "superadmin"]
+        }
+      }
+    },
+    "SetPassword": {
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "VerifyUser": {
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "ForgotPassword": {
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "ChangePassword": {
+      "properties": {
+        "oldPassword": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

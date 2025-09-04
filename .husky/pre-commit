@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+# Check ESLint Standards
+npm run lint ||
+(
+    echo 'Please fix your lint issue first.';
+    false;
+)
+
+
