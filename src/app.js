@@ -16,58 +16,64 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const path = require('path');
 
 const app = express();
 
+// Logging
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
 
-// set security HTTP headers
+// Set security HTTP headers
 app.use(helmet());
 
-// parse json request body
+// Parse JSON and urlencoded request bodies
 app.use(express.json());
-
-// parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
-// sanitize request data
+// Sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
 
-// gzip compression
+// Gzip compression
 app.use(compression());
 
-// enable cors
+// Enable CORS
 app.use(cors());
 app.options('*', cors());
 
-// jwt authentication
+// Passport JWT authentication
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
-// limit repeated failed requests to auth endpoints
+// Serve uploads folder statically
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// Rate limiting for auth endpoints in production
 if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
+
+// Swagger docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// v1 api routes
+// API v1 routes
 app.use('/api/v1', routes);
 
-// send back a 404 error for any unknown api request
+// 404 handler for unknown routes
 app.use((req, res, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
 });
 
-// convert error to ApiError, if needed
+// Convert errors to ApiError
 app.use(errorConverter);
 
-// handle error
+// Global error handler
 app.use(errorHandler);
 
+// Body parser (redundant if express.json is used but safe)
 app.use(bodyParser.json());
 
 module.exports = app;
