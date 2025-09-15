@@ -48,6 +48,9 @@ const blogSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    url: {
+      type: String, // e.g. "5 min"
+    },
   },
   {
     timestamps: true,
