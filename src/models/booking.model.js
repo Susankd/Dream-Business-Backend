@@ -28,14 +28,14 @@ const bookingSchema = mongoose.Schema(
     },
     consultationType: {
       type: String,
-      enum: [
-        'Business Growth Advisory for Startups',
-        'Strategic Business Advisory',
-        'Capital Raising & Investment Consulting',
-        'Project Financing & Bank Loan Advisory',
-        'Public Listing and IPO Readiness Consulting',
-        'Corporate Tax, Legal & Foreign Investment Consulting',
-      ],
+      // enum: [
+      //   'Business Growth Advisory for Startups',
+      //   'Strategic Business Advisory',
+      //   'Capital Raising & Investment Consulting',
+      //   'Project Financing & Bank Loan Advisory',
+      //   'Public Listing and IPO Readiness Consulting',
+      //   'Corporate Tax, Legal & Foreign Investment Consulting',
+      // ],
       required: true,
     },
     bookingDate: {
