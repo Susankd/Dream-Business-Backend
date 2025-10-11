@@ -82,9 +82,18 @@ const updateBlog = catchAsync(async (req, res) => {
   });
 });
 
+const getBlogBySlug = catchAsync(async (req, res) => {
+  const blog = await blogService.getBlogBySlug(req.params.slug);
+  if (!blog) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Blog not found');
+  }
+  res.send(blog);
+});
+
 module.exports = {
   createBlog,
   getAllBlogDetail,
   getBlogById,
   updateBlog,
+  getBlogBySlug,
 };

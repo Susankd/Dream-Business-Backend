@@ -6,7 +6,12 @@ const { Blog } = require('../models');
  * @returns {Promise<Blog>}
  */
 const createBlog = async (blogBody) => {
-  console.log(blogBody);
+  const getBlog = await Blog.findOne({ slug: blogBody?.slug });
+
+  if (getBlog) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Blog slug already taken');
+  }
+
   const blog = await Blog.create(blogBody);
   return blog;
 };
@@ -54,9 +59,21 @@ const updateBlogById = async (blogId, updateBody) => {
   return blog;
 };
 
+/**
+ * Get blog by ID
+ * @param {string} id
+ * @returns {Promise<Blog>}
+ */
+const getBlogBySlug = async (slug) => {
+  const blog = await Blog.findOne({ slug });
+
+  return blog;
+};
+
 module.exports = {
   createBlog,
   getAllBlogDetail,
   getBlogById,
   updateBlogById,
+  getBlogBySlug,
 };

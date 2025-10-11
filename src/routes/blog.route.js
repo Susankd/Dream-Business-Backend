@@ -35,6 +35,8 @@ router.route('/:blogId').get(blogController.getBlogById).patch(
   upload.single('coverImage'), // allows updating coverImage
   blogController.updateBlog
 );
+
+router.route('/slug/:slug').get(blogController.getBlogBySlug);
 // Optional: add delete if needed
 // .delete(blogController.deleteBlog);
 
