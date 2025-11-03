@@ -57,33 +57,29 @@ const investorProfileSchema = mongoose.Schema(
     ], // Array for multiple industries
     preferredStage: {
       type: String,
-      required: true,
-      enum: [
-        'Early stage (idea/prototype)',
-        'Growth stage',
-        'Scaling / mature startups',
-      ],
+      // required: true,
+      // enum: [
+      //   'Early stage (idea/prototype)',
+      //   'Growth stage',
+      //   'Scaling / mature startups',
+      // ],
     },
 
     // --- Short Q&A ---
     attractionFactors: {
       type: String,
-      required: true,
-      enum: [
-        'Innovative idea',
-        'Strong cash team',
-        'Market opportunity',
-        'Scalable business model',
-      ],
+      // enum: [
+      //   'Innovative idea',
+      //   'Strong cash team',
+      //   'Market opportunity',
+      //   'Scalable business model',
+      // ],
     },
     investmentStyle: {
       type: String,
-      enum: ['Co-invest', 'Solo'],
     },
     mentoringInterest: {
       type: String,
-      required: true,
-      enum: ['Yes', 'No', 'Maybe'],
     },
 
     // --- Final Section ---
@@ -94,13 +90,11 @@ const investorProfileSchema = mongoose.Schema(
     meetingMode: {
       type: String,
       required: true,
-      enum: ['Online', 'In-person'],
     },
 
     // --- Admin & Status ---
     investorStatus: {
       type: String,
-      enum: ['Pending Review', 'Vetted', 'Active', 'Inactive'],
       default: 'Pending Review',
     },
   },
