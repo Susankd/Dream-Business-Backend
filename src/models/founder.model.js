@@ -31,7 +31,6 @@ const founderApplicationSchema = mongoose.Schema(
     },
     industry: {
       type: String,
-      required: true,
       trim: true,
     },
     companyStage: {
@@ -48,12 +47,10 @@ const founderApplicationSchema = mongoose.Schema(
     // --- Funding & Business Details ---
     businessDescription: {
       type: String,
-      required: true,
       trim: true,
     },
     problemSolved: {
       type: String,
-      required: true,
       trim: true,
     },
     currentRevenue: {
@@ -62,17 +59,14 @@ const founderApplicationSchema = mongoose.Schema(
     },
     fundingRequired: {
       type: String, // Kept as String for "NPR or USD"
-      required: true,
       trim: true,
     },
     fundUsage: {
       type: String,
-      required: true,
       trim: true,
     },
     previousFunding: {
       type: String,
-      required: true,
       enum: ['Yes', 'No'],
     },
     previousFundingDetails: {
@@ -83,7 +77,6 @@ const founderApplicationSchema = mongoose.Schema(
     // --- Short Q&A ---
     investorTypeSought: {
       type: String,
-      required: true,
       enum: [
         'Angel investor',
         'Strategic partner',
@@ -93,7 +86,6 @@ const founderApplicationSchema = mongoose.Schema(
     },
     mentorshipInterest: {
       type: String,
-      required: true,
       enum: ['Yes', 'No', 'Maybe'],
     },
 

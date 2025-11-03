@@ -32,8 +32,8 @@ const investorProfileSchema = mongoose.Schema(
     // --- Investment Preferences ---
     investmentType: {
       type: String,
-      required: true,
       enum: [
+        "",
         'Angel / Individual',
         'Venture Capital',
         'Corporate / Institutional',
@@ -78,7 +78,6 @@ const investorProfileSchema = mongoose.Schema(
     },
     investmentStyle: {
       type: String,
-      required: true,
       enum: ['Co-invest', 'Solo'],
     },
     mentoringInterest: {
