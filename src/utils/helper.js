@@ -41,9 +41,46 @@ const genders = {
   other: 'other'
 };
 
+const paymentStaus = {
+  Completed: 'Completed',
+  Pending: 'Pending',
+  Expired: 'Expired',
+  Initiated: 'Initiated',
+  Refunded: 'Refunded',
+  User_canceled: 'User canceled',
+  Partially_Refunded: 'Partially Refunded',
+};
+
+async function verifyKhaltiPayment(pidx) {
+  const headersList = {
+    Authorization: `key ${process.env.LIVE_SECRET_KEY}`,
+    'Content-Type': 'application/json',
+  };
+
+  const bodyContent = JSON.stringify({ pidx });
+
+  const reqOptions = {
+    url: 'https://khalti.com/api/v2/epayment/lookup/',
+    method: 'POST',
+    headers: headersList,
+    data: bodyContent,
+  };
+
+  try {
+    const response = await axios.request(reqOptions);
+    return response.data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error verifying Khalti payment:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   getHostUrl,
   ensureEntityExists,
   validateHash,
-  genders
+  genders,
+  verifyKhaltiPayment,
+  paymentStaus
 };

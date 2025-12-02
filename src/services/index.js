@@ -6,3 +6,4 @@ module.exports.donerService = require('./doner.service');
 module.exports.bookingService = require('./booking.service');
 module.exports.blogService = require('./blog.service');
 module.exports.dreamNetworkService = require('./dreamNetwork.service');
+module.exports.walletService = require('./wallet.service');
