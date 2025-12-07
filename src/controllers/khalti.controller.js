@@ -2,14 +2,14 @@ const axios = require('axios');
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 
-const KHALTI_SECRET_KEY = '8e436ffa3fa14faa8100213ec2f9f6d6'; // Test Secret Key (Sandbox)
+const KHALTI_SECRET_KEY = 'live_secret_key_02d97702954c497fb32794569540b847'; // Live Secret Key
 
 const initiatePayment = catchAsync(async (req, res) => {
   const payload = req.body;
 
   try {
     const response = await axios.post(
-      'https://dev.khalti.com/api/v2/epayment/initiate/',
+      'https://khalti.com/api/v2/epayment/initiate/',
       payload,
       {
         headers: {
@@ -36,12 +36,14 @@ const verifyPayment = catchAsync(async (req, res) => {
   const { pidx } = req.body;
 
   if (!pidx) {
-    return res.status(httpStatus.BAD_REQUEST).send({ message: 'pidx is required' });
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .send({ message: 'pidx is required' });
   }
 
   try {
     const response = await axios.post(
-      'https://dev.khalti.com/api/v2/epayment/lookup/',
+      'https://khalti.com/api/v2/epayment/lookup/',
       { pidx },
       {
         headers: {
@@ -63,7 +65,6 @@ const verifyPayment = catchAsync(async (req, res) => {
     }
   }
 });
-
 
 module.exports = {
   initiatePayment,
