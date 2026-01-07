@@ -1,4 +1,5 @@
 const { Blog } = require('../models');
+const ApiError = require('../utils/ApiError');
 
 /**
  * Create a new blog
