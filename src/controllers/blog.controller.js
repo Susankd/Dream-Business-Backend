@@ -38,6 +38,8 @@ const getAllBlogDetail = catchAsync(async (req, res) => {
   const noRegex = pick(req.query, ['noRegex']);
   const select = pick(req.query, ['select']);
 
+  options.limit = options.limit ? Number(options.limit) : 30;
+
   const result = await blogService.getAllBlogDetail(
     filter,
     options,
