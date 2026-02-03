@@ -12,6 +12,9 @@ const createFirmsewa = catchAsync(async (req, res) => {
 const getFirmsewas = catchAsync(async (req, res) => {
     const filter = pick(req.query, ['name', 'status', 'serviceRequired']);
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    if (!options.sortBy) {
+        options.sortBy = 'createdAt:desc';
+    }
     const result = await firmsewaService.queryFirmsewas(filter, options);
     res.send(result);
 });

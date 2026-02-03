@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const { Firmsewa } = require('../models');
+const { emailService } = require('.');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -8,7 +9,47 @@ const ApiError = require('../utils/ApiError');
  * @returns {Promise<Firmsewa>}
  */
 const createFirmsewa = async (firmsewaBody) => {
-    return Firmsewa.create(firmsewaBody);
+    const firmsewa = await Firmsewa.create(firmsewaBody);
+
+    try {
+        const adminEmails = process.env.ADMIN_EMAIL
+            ? process.env.ADMIN_EMAIL.split(',').map((email) => email.trim())
+            : [];
+
+        if (adminEmails.length === 0) {
+            console.log('No admin emails configured. Skipping notification.');
+            return firmsewa;
+        }
+
+        const emailBody = `
+      <h2>New Firmsewa Service Request</h2>
+      <p>A new service request has been submitted. Please find the details below:</p>
+      <hr>
+      <h3>Client Information</h3>
+      <ul>
+        <li><strong>Name:</strong> ${firmsewa.name}</li>
+        <li><strong>Email:</strong> ${firmsewa.email}</li>
+        <li><strong>Phone:</strong> ${firmsewa.phoneNumber}</li>
+      </ul>
+      <h3>Request Details</h3>
+      <ul>
+        <li><strong>Service Required:</strong> ${firmsewa.serviceRequired}</li>
+        <li><strong>Message:</strong> ${firmsewa.message || 'No message provided'}</li>
+      </ul>
+    `;
+
+        for (const to of adminEmails) {
+            await emailService.sendBookingNotificationEmail(
+                to,
+                `New Firmsewa Request from ${firmsewa.name}`,
+                emailBody
+            );
+        }
+    } catch (err) {
+        console.error('Error sending firmsewa notification email:', err);
+    }
+
+    return firmsewa;
 };
 
 /**
