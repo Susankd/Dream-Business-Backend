@@ -7,3 +7,4 @@ module.exports.bookingService = require('./booking.service');
 module.exports.blogService = require('./blog.service');
 module.exports.dreamNetworkService = require('./dreamNetwork.service');
 module.exports.walletService = require('./wallet.service');
+module.exports.firmsewaService = require('./firmsewa.service');

@@ -44,6 +44,10 @@ const defaultRoutes = [
     path: '/khalti',
     route: khaltiRoute,
   },
+  {
+    path: '/firmsewa',
+    route: require('./firmsewa.route'),
+  },
 ];
 
 
