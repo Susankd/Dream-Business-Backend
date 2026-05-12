@@ -48,6 +48,14 @@ const defaultRoutes = [
     path: '/firmsewa',
     route: require('./firmsewa.route'),
   },
+  {
+    path: '/contacts',
+    route: require('./contact.route'),
+  },
+  {
+    path: '/subscriptions',
+    route: require('./subscription.route'),
+  },
 ];
 
 

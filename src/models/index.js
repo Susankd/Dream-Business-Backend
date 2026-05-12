@@ -7,3 +7,5 @@ module.exports.Founder = require('./founder.model');
 module.exports.Investor = require('./investor.model');
 module.exports.Payment = require('./payment.model');
 module.exports.Firmsewa = require('./firmsewa.model');
+module.exports.Contact = require('./contact.model');
+module.exports.Subscription = require('./subscription.model');

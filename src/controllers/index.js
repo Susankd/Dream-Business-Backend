@@ -6,6 +6,8 @@ const blogController = require('./blog.controller');
 const dreamNetworkController = require('./dreamNetwork.controller');
 const walletController = require('./wallet.controller');
 const khaltiController = require('./khalti.controller');
+const contactController = require('./contact.controller');
+const subscriptionController = require('./subscription.controller');
 
 module.exports = {
     userController,
@@ -16,4 +18,6 @@ module.exports = {
     dreamNetworkController,
     walletController,
     khaltiController,
+    contactController,
+    subscriptionController,
 };

@@ -8,3 +8,5 @@ module.exports.blogService = require('./blog.service');
 module.exports.dreamNetworkService = require('./dreamNetwork.service');
 module.exports.walletService = require('./wallet.service');
 module.exports.firmsewaService = require('./firmsewa.service');
+module.exports.contactService = require('./contact.service');
+module.exports.subscriptionService = require('./subscription.service');
