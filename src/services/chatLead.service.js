@@ -174,8 +174,10 @@ const getAllLeads = async (filter, options) => ChatLead.paginate(filter, options
 
 const getLeadById = async (id) => ChatLead.findById(id);
 
-const getLeadHistory = async (leadId) =>
-  ChatHistory.find({ leadId }).sort({ createdAt: 1 }).lean();
+const getLeadHistory = async (leadId) => {
+  const docs = await ChatHistory.find({ leadId }).sort({ createdAt: 1 }).lean();
+  return docs.map((d) => ({ ...d, id: d._id.toString() }));
+};
 
 const getAllConversations = async () => {
   const leads = await ChatLead.find({})
@@ -189,7 +191,12 @@ const getAllConversations = async () => {
         .sort({ createdAt: -1 })
         .lean();
       const count = await ChatHistory.countDocuments({ leadId: lead._id });
-      return { ...lead, lastMessage: lastMsg || null, messageCount: count };
+      return {
+        ...lead,
+        id: lead._id.toString(),
+        lastMessage: lastMsg ? { ...lastMsg, id: lastMsg._id.toString() } : null,
+        messageCount: count,
+      };
     })
   );
 
