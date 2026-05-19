@@ -56,6 +56,10 @@ const defaultRoutes = [
     path: '/subscriptions',
     route: require('./subscription.route'),
   },
+  {
+    path: '/chat',
+    route: require('./chatLead.route'),
+  },
 ];
 
 

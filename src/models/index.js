@@ -9,3 +9,5 @@ module.exports.Payment = require('./payment.model');
 module.exports.Firmsewa = require('./firmsewa.model');
 module.exports.Contact = require('./contact.model');
 module.exports.Subscription = require('./subscription.model');
+module.exports.ChatLead = require('./chatLead.model');
+module.exports.ChatHistory = require('./chatHistory.model');

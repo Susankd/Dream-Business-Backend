@@ -8,6 +8,7 @@ const walletController = require('./wallet.controller');
 const khaltiController = require('./khalti.controller');
 const contactController = require('./contact.controller');
 const subscriptionController = require('./subscription.controller');
+const chatLeadController = require('./chatLead.controller');
 
 module.exports = {
     userController,
@@ -20,4 +21,5 @@ module.exports = {
     khaltiController,
     contactController,
     subscriptionController,
+    chatLeadController,
 };
