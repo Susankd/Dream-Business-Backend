@@ -177,7 +177,33 @@ const getLeadById = async (id) => ChatLead.findById(id);
 const getLeadHistory = async (leadId) =>
   ChatHistory.find({ leadId }).sort({ createdAt: 1 }).lean();
 
+const getAllConversations = async () => {
+  const leads = await ChatLead.find({})
+    .select('sessionId name phone email service status language createdAt updatedAt')
+    .sort({ updatedAt: -1 })
+    .lean();
+
+  const leadsWithLastMsg = await Promise.all(
+    leads.map(async (lead) => {
+      const lastMsg = await ChatHistory.findOne({ leadId: lead._id })
+        .sort({ createdAt: -1 })
+        .lean();
+      const count = await ChatHistory.countDocuments({ leadId: lead._id });
+      return { ...lead, lastMessage: lastMsg || null, messageCount: count };
+    })
+  );
+
+  return leadsWithLastMsg;
+};
+
 const updateLeadStatus = async (id, status) =>
   ChatLead.findByIdAndUpdate(id, { $set: { status } }, { new: true });
 
-module.exports = { sendMessage, getAllLeads, getLeadById, getLeadHistory, updateLeadStatus };
+module.exports = {
+  sendMessage,
+  getAllLeads,
+  getLeadById,
+  getLeadHistory,
+  getAllConversations,
+  updateLeadStatus,
+};

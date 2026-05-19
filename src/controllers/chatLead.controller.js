@@ -33,6 +33,11 @@ const getLeadHistory = catchAsync(async (req, res) => {
   res.send(history);
 });
 
+const getAllConversations = catchAsync(async (req, res) => {
+  const result = await chatLeadService.getAllConversations();
+  res.send(result);
+});
+
 const updateLeadStatus = catchAsync(async (req, res) => {
   const { status } = req.body;
   if (!status) throw new ApiError(httpStatus.BAD_REQUEST, 'Status is required');
@@ -41,4 +46,11 @@ const updateLeadStatus = catchAsync(async (req, res) => {
   res.send(lead);
 });
 
-module.exports = { sendMessage, getAllLeads, getLeadById, getLeadHistory, updateLeadStatus };
+module.exports = {
+  sendMessage,
+  getAllLeads,
+  getLeadById,
+  getLeadHistory,
+  getAllConversations,
+  updateLeadStatus,
+};
