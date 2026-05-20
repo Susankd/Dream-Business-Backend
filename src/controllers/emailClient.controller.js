@@ -53,6 +53,12 @@ const getCampaigns = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const getCampaignById = catchAsync(async (req, res) => {
+  const campaign = await emailClientService.getCampaignById(req.params.campaignId);
+  if (!campaign) throw new ApiError(httpStatus.NOT_FOUND, 'Campaign not found');
+  res.send(campaign);
+});
+
 const getTemplates = catchAsync(async (req, res) => {
   const templates = Object.entries(emailClientService.TEMPLATES).map(([key, val]) => ({
     key,
@@ -75,6 +81,7 @@ module.exports = {
   deleteClient,
   sendCampaign,
   getCampaigns,
+  getCampaignById,
   getTemplates,
   getCategories,
 };

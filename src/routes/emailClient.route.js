@@ -7,6 +7,7 @@ router.get('/categories', emailClientController.getCategories);
 router.get('/templates', emailClientController.getTemplates);
 router.post('/send', emailClientController.sendCampaign);
 router.get('/campaigns', emailClientController.getCampaigns);
+router.get('/campaigns/:campaignId', emailClientController.getCampaignById);
 router.get('/by-category/:category', emailClientController.getClientsByCategory);
 
 router
