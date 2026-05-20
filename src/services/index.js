@@ -11,3 +11,4 @@ module.exports.firmsewaService = require('./firmsewa.service');
 module.exports.contactService = require('./contact.service');
 module.exports.subscriptionService = require('./subscription.service');
 module.exports.chatLeadService = require('./chatLead.service');
+module.exports.emailClientService = require('./emailClient.service');

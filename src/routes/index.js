@@ -60,6 +60,10 @@ const defaultRoutes = [
     path: '/chat',
     route: require('./chatLead.route'),
   },
+  {
+    path: '/email-clients',
+    route: require('./emailClient.route'),
+  },
 ];
 
 

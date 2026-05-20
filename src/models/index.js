@@ -11,3 +11,5 @@ module.exports.Contact = require('./contact.model');
 module.exports.Subscription = require('./subscription.model');
 module.exports.ChatLead = require('./chatLead.model');
 module.exports.ChatHistory = require('./chatHistory.model');
+module.exports.EmailClient = require('./emailClient.model');
+module.exports.EmailCampaign = require('./emailCampaign.model');
