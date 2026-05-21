@@ -472,6 +472,272 @@ const buildItIndustryTemplate = ({ ownerName, businessName } = {}) => {
 </html>`;
 };
 
+const buildHydropowerTemplate = ({ ownerName, businessName } = {}) => {
+  const greeting = ownerName ? `Dear ${ownerName},` : 'Dear Valued Client,';
+  const businessLine = businessName
+    ? `We are reaching out to <strong>${businessName}</strong> with end-to-end business and financial solutions built exclusively for the hydropower energy sector.`
+    : 'We are reaching out with end-to-end business and financial solutions built exclusively for the hydropower energy sector.';
+
+  const services = [
+    {
+      icon: '📋',
+      title: 'Project Registration & Licensing',
+      desc: 'Assistance with DoED and NEA licensing and approvals — ensuring full regulatory compliance from day one.',
+    },
+    {
+      icon: '💹',
+      title: 'Financial and Equity Structuring',
+      desc: 'Debt/equity planning and investor structuring for smooth project execution and capital efficiency.',
+    },
+    {
+      icon: '⚖️',
+      title: 'Tax & VAT Advisory',
+      desc: 'Industry-specific tax and VAT compliance strategies tailored for hydropower promoters and investors.',
+    },
+    {
+      icon: '📊',
+      title: 'Quarterly and Annual Reporting',
+      desc: 'Transparent project-level supervision and financial reporting delivered on a timely, consistent basis.',
+    },
+    {
+      icon: '🏦',
+      title: 'Loan & Financing Assistance',
+      desc: 'Bank negotiations, project reports, and end-to-end financial closures for optimal project funding.',
+    },
+    {
+      icon: '📈',
+      title: 'Outsourced CFO',
+      desc: 'Investor reporting, budget control, and fund management — strategic financial leadership on demand.',
+    },
+    {
+      icon: '💰',
+      title: 'Wealth Management',
+      desc: 'Secure and strategic wealth planning for hydropower promoters and long-term investors.',
+    },
+  ];
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hydropower Financial Solutions – Dream Business Pvt. Ltd.</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0edf7;font-family:Arial,Helvetica,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0edf7;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" border="0"
+          style="max-width:600px;width:100%;background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(68,27,152,0.12);">
+
+          <!-- ── HEADER ── -->
+          <tr>
+            <td style="background:linear-gradient(135deg,${PRIMARY_DARK} 0%,${PRIMARY} 100%);padding:28px 40px 28px;text-align:center;">
+              <img src="${LOGO_URL}" width="110" alt="Dream Business" style="display:block;margin:0 auto 14px;max-width:110px;" />
+              <div style="width:40px;height:2px;background:${GOLD};margin:0 auto 12px;border-radius:2px;"></div>
+              <p style="color:rgba(255,255,255,0.7);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Hydropower</p>
+              <h1 style="color:#ffffff;font-size:24px;font-weight:700;margin:0 0 10px;line-height:1.3;">
+                Powering Hydropower Projects<br/>with Financial Discipline
+              </h1>
+              <p style="color:rgba(255,255,255,0.75);font-size:14px;margin:0;line-height:1.6;">
+                End-to-end business and financial solutions for promoters<br/>
+                and investors in the energy sector.
+              </p>
+            </td>
+          </tr>
+
+          <!-- ── GOLD STRIP ── -->
+          <tr>
+            <td style="background:linear-gradient(90deg,${GOLD} 0%,${GOLD_LIGHT} 50%,${GOLD} 100%);height:4px;"></td>
+          </tr>
+
+          <!-- ── BODY ── -->
+          <tr>
+            <td style="padding:44px 40px 36px;">
+
+              <p style="color:#1a1a2e;font-size:16px;line-height:1.7;margin:0 0 12px;">
+                ${greeting}
+              </p>
+              <p style="color:#333350;font-size:15px;line-height:1.8;margin:0 0 10px;">
+                ${businessLine}
+              </p>
+              <p style="color:#333350;font-size:15px;line-height:1.8;margin:0 0 32px;">
+                Hydropower projects demand <strong style="color:${PRIMARY};">significant investments and strict regulatory compliance.</strong>
+                Our team of Chartered Accountants and business experts ensures promoters and investors can
+                structure, finance, and manage projects with transparency and efficiency.
+              </p>
+
+              <!-- ── SERVICES HEADING ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 8px;">
+                <tr>
+                  <td style="padding:0 0 4px;">
+                    <p style="color:${PRIMARY};font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin:0;">
+                      Our Hydropower Services
+                    </p>
+                    <p style="color:#666680;font-size:13px;margin:4px 0 0;line-height:1.5;">
+                      Comprehensive support for every phase of your energy project,
+                      from licensing to financial closure.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <div style="width:40px;height:2px;background:${GOLD};border-radius:2px;margin:12px 0 24px;"></div>
+
+              <!-- ── SERVICES GRID (2 columns) ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 36px;">
+                ${services.reduce((rows, svc, i) => {
+                  if (i % 2 === 0) {
+                    const next = services[i + 1];
+                    rows.push(`
+                  <tr>
+                    <td style="padding:0 6px 12px 0;width:50%;vertical-align:top;">
+                      <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                        style="background:#f8f5ff;border-radius:10px;border-top:3px solid ${PRIMARY};">
+                        <tr>
+                          <td style="padding:18px 16px;">
+                            <p style="font-size:22px;margin:0 0 8px;">${svc.icon}</p>
+                            <p style="color:#1a1a2e;font-size:13px;font-weight:700;margin:0 0 6px;line-height:1.4;">${svc.title}</p>
+                            <p style="color:#666680;font-size:12px;margin:0;line-height:1.6;">${svc.desc}</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    ${next ? `
+                    <td style="padding:0 0 12px 6px;width:50%;vertical-align:top;">
+                      <table cellpadding="0" cellspacing="0" border="0" width="100%"
+                        style="background:#f8f5ff;border-radius:10px;border-top:3px solid ${GOLD};">
+                        <tr>
+                          <td style="padding:18px 16px;">
+                            <p style="font-size:22px;margin:0 0 8px;">${next.icon}</p>
+                            <p style="color:#1a1a2e;font-size:13px;font-weight:700;margin:0 0 6px;line-height:1.4;">${next.title}</p>
+                            <p style="color:#666680;font-size:12px;margin:0;line-height:1.6;">${next.desc}</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>` : '<td style="width:50%;"></td>'}
+                  </tr>`);
+                  }
+                  return rows;
+                }, []).join('')}
+              </table>
+
+              <!-- ── WHY US STRIP ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                style="background:linear-gradient(135deg,#fdf9ec,#f8f5ff);border-radius:12px;border-left:4px solid ${GOLD};margin:0 0 32px;">
+                <tr>
+                  <td style="padding:24px 28px;">
+                    <p style="color:${PRIMARY};font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin:0 0 14px;">
+                      Why Partner With Us?
+                    </p>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                      ${[
+                        'Specialized knowledge of hydropower financing',
+                        'Strong experience with project promoters',
+                        'Bank and investor relationship management',
+                        'Full compliance with regulatory requirements',
+                      ].map(point => `
+                      <tr>
+                        <td style="padding:0 0 8px;vertical-align:top;">
+                          <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td style="padding-right:10px;vertical-align:middle;">
+                                <div style="width:7px;height:7px;background:${GOLD};border-radius:50%;"></div>
+                              </td>
+                              <td style="color:#333350;font-size:13px;line-height:1.5;">${point}</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>`).join('')}
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ── CTA ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                style="background:linear-gradient(135deg,${PRIMARY_DARK},${PRIMARY});border-radius:12px;margin:0 0 32px;">
+                <tr>
+                  <td style="padding:36px 40px;text-align:center;">
+                    <p style="color:rgba(255,255,255,0.8);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 8px;">
+                      Let's Power Nepal's Future Together
+                    </p>
+                    <p style="color:#ffffff;font-size:18px;font-weight:700;margin:0 0 6px;line-height:1.4;">
+                      Secure your investment and ensure<br/>your project's success
+                    </p>
+                    <p style="color:rgba(255,255,255,0.75);font-size:14px;margin:0 0 28px;line-height:1.6;">
+                      Get expert financial and regulatory guidance at every stage of your hydropower project.
+                    </p>
+                    <a href="https://www.dreambusiness.com.np?service=Hydropower"
+                       style="display:inline-block;background:${GOLD};color:#1a1a2e;font-size:16px;font-weight:700;
+                              padding:16px 44px;border-radius:8px;text-decoration:none;letter-spacing:0.3px;">
+                      Partner with Us →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color:#666680;font-size:13px;line-height:1.7;margin:0;">
+                Have questions? Reach us at
+                <a href="mailto:support@dreambusiness.com.np" style="color:${PRIMARY};text-decoration:none;">
+                  support@dreambusiness.com.np
+                </a> or call
+                <strong style="color:#1a1a2e;">+977-9802342602</strong>.
+                Office hours: Sunday–Friday, 10 AM – 5 PM NPT.
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- ── DIVIDER ── -->
+          <tr>
+            <td style="padding:0 40px;">
+              <div style="height:1px;background:#ece8f5;"></div>
+            </td>
+          </tr>
+
+          <!-- ── FOOTER ── -->
+          <tr>
+            <td style="background:linear-gradient(135deg,${PRIMARY_DARK},${PRIMARY});padding:32px 40px;text-align:center;">
+              <img src="${LOGO_URL}" width="120" alt="Dream Business" style="display:block;margin:0 auto 16px;opacity:0.9;" />
+              <p style="color:rgba(255,255,255,0.9);font-size:13px;margin:0 0 8px;font-weight:600;">
+                Dream Business Pvt. Ltd.
+              </p>
+              <p style="color:rgba(255,255,255,0.65);font-size:12px;margin:0 0 16px;line-height:1.7;">
+                CTC Mall, 5th Floor, Kathmandu, Nepal<br/>
+                Sun–Fri: 10:00 AM – 5:00 PM NPT
+              </p>
+              <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 16px;">
+                <tr>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.dreambusiness.com.np" style="color:${GOLD_LIGHT};font-size:12px;text-decoration:none;">Website</a>
+                  </td>
+                  <td style="color:rgba(255,255,255,0.3);font-size:12px;">|</td>
+                  <td style="padding:0 8px;">
+                    <a href="mailto:support@dreambusiness.com.np" style="color:${GOLD_LIGHT};font-size:12px;text-decoration:none;">Email</a>
+                  </td>
+                  <td style="color:rgba(255,255,255,0.3);font-size:12px;">|</td>
+                  <td style="padding:0 8px;">
+                    <a href="tel:+9779802342602" style="color:${GOLD_LIGHT};font-size:12px;text-decoration:none;">+977-9802342602</a>
+                  </td>
+                </tr>
+              </table>
+              <p style="color:rgba(255,255,255,0.4);font-size:11px;margin:0;">
+                © ${new Date().getFullYear()} Dream Business Pvt. Ltd. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>`;
+};
+
 const TEMPLATES = {
   business_registration: {
     label: 'Business Registration',
@@ -482,6 +748,11 @@ const TEMPLATES = {
     label: 'IT Industry Solutions',
     subject: 'Comprehensive Business & Financial Solutions for Your IT Company',
     build: buildItIndustryTemplate,
+  },
+  hydropower: {
+    label: 'Hydropower',
+    subject: 'Powering Your Hydropower Project with Financial Discipline',
+    build: buildHydropowerTemplate,
   },
 };
 
